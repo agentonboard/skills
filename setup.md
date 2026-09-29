@@ -33,7 +33,7 @@ If the install adds `~/.agentonboard/bin` to PATH, a shell started in this sessi
 ### 2. Install this skill
 
 ```bash
-npx skills add agentonboard/skill
+npx skills add agentonboard/skills
 ```
 
 Tell the user this one needs a **session restart** to take effect — the agent reads its skills at startup, so the signing flow is not live until they do.
