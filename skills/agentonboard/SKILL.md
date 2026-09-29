@@ -1,6 +1,7 @@
 ---
 name: agentonboard
 description: Use when the user names or refers to a third-party service, app, or domain — either outright ("add this to Notion") or by reference ("go over there and do that", "log in to it and check") — and the task requires acting on that service.
+license: MIT
 ---
 
 # AgentOnboard
@@ -79,7 +80,7 @@ Match on the code in the response body, not the status. Partners return this as 
 
 ### 401, and the user has no `aon` credentials
 
-`aon` reports a missing or invalid key. That is a setup problem, not a token problem — see [setup.md](setup.md).
+`aon` reports a missing or invalid key. That is a setup problem, not a token problem — see [setup.md](references/setup.md).
 
 ## Non-partner services
 
