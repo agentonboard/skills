@@ -16,14 +16,16 @@ The skill assumes the [`aon` CLI](https://agentonboard.xyz) is installed. For th
 
 Four steps: **discover** (`GET https://<domain>/auth.md`), **mint** (`aon token get <domain>`), **call** (`Authorization: Bearer <jwt>`), **recover** (re-mint on expiry, surface `ACCOUNT_REQUIRED` to the human).
 
+A machine can hold several AgentOnboard identities, each stored under a local profile name. The skill passes `--profile` when the user names one, and mints with the default when they do not — which identity acts follows the user's words, not the domain being called.
+
 The `auth.md` discovery file is the open convention introduced by WorkOS. A service that does not publish one is not an AgentOnboard partner, and the skill says so rather than guessing.
 
 ## Files
 
 | File | Contents |
 |---|---|
-| [`SKILL.md`](skills/agentonboard/SKILL.md) | The signing flow: discover, mint, call, recover. |
-| [`setup.md`](skills/agentonboard/references/setup.md) | One-time machine setup. Reached by pointer, not on load. |
+| [`SKILL.md`](skills/agentonboard/SKILL.md) | The signing flow: discover, mint, call, recover, plus profiles. |
+| [`setup.md`](skills/agentonboard/references/setup.md) | One-time machine setup, including storing several keys. Reached by pointer, not on load. |
 
 ## Why a separate repo
 
@@ -48,14 +50,16 @@ The skill assumes the [`aon` CLI](https://agentonboard.xyz) is installed. For th
 
 Four steps: **discover** (`GET https://<domain>/auth.md`), **mint** (`aon token get <domain>`), **call** (`Authorization: Bearer <jwt>`), **recover** (re-mint on expiry, surface `ACCOUNT_REQUIRED` to the human).
 
+A machine can hold several AgentOnboard identities, each stored under a local profile name. The skill passes `--profile` when the user names one, and mints with the default when they do not — which identity acts follows the user's words, not the domain being called.
+
 The `auth.md` discovery file is the open convention introduced by WorkOS. A service that does not publish one is not an AgentOnboard partner, and the skill says so rather than guessing.
 
 ## Files
 
 | File | Contents |
 |---|---|
-| [`SKILL.md`](skills/agentonboard/SKILL.md) | The signing flow: discover, mint, call, recover. |
-| [`setup.md`](skills/agentonboard/references/setup.md) | One-time machine setup. Reached by pointer, not on load. |
+| [`SKILL.md`](skills/agentonboard/SKILL.md) | The signing flow: discover, mint, call, recover, plus profiles. |
+| [`setup.md`](skills/agentonboard/references/setup.md) | One-time machine setup, including storing several keys. Reached by pointer, not on load. |
 
 ## Why a separate repo
 
