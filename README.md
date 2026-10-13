@@ -14,7 +14,7 @@ The skill assumes the [`aon` CLI](https://agentonboard.xyz) is installed. For th
 
 ## What it does
 
-Four steps: **discover** (`GET https://<domain>/auth.md`), **mint** (`aon token get <domain>`), **call** (`Authorization: Bearer <jwt>`), **recover** (re-mint on expiry, surface `ACCOUNT_REQUIRED` to the human).
+Four steps: **discover** (`GET https://<domain>/auth.md`), **mint** (`aon token get <domain>`), **call** (`Authorization: Bearer <jwt>`), **recover** (re-mint on expiry, sign up or surface `ACCOUNT_REQUIRED` to the human).
 
 A machine can hold several AgentOnboard identities, each stored under a local profile name. The skill passes `--profile` when the user names one, and mints with the default when they do not — which identity acts follows the user's words, not the domain being called.
 

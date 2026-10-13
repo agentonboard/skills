@@ -26,7 +26,7 @@ Both locations are in use. Try the first, then the second.
 **A 200 means it is a partner.** Read two things off the file:
 
 - **`Audience`** — the domain string, verbatim. Pass this to `aon token get`.
-- **Any signup or account-creation URL** in the instructions. You will need it for the `ACCOUNT_REQUIRED` branch, and reading it now means you do not have to make a second round trip to a service that just rejected you.
+- **The signup instruction** in `## Endpoints` or the rejection table. Account creation is an optional feature for partners: some support agent signup and publish a dedicated endpoint (like `POST /api/signup`), while others do not and serve existing users only via a human connect or registration URL. Read it now so you do not have to fetch `auth.md` again when rejected.
 
 **When `Audience` is absent**, derive the bare hostname of the service you are actually calling and state the derivation to the user. A token minted for the wrong hostname is rejected with `AUDIENCE_MISMATCH`, which reads like a forgery bug and sends the user hunting for a security problem that does not exist.
 
@@ -78,7 +78,10 @@ If the retried call is also 401, the credential is not the problem. Report the s
 
 **The token is valid. The account is not.** The user is authenticated, but their verified email has no account at that service. This is the expected outcome for anyone using a new service, not an error to fix.
 
-Tell the user, in one message: the service they asked about, that their email is not yet an account there, and the signup URL you read in step 1. Then wait. An agent cannot create an account — account creation is a human flow, and it is the partner's enforcement point.
+Sign up is an optional feature for partners — some services support agent signup, while others serve existing accounts only. Check what the partner published in `auth.md`:
+
+- **Partner publishes an agent signup endpoint** (e.g. `POST /api/signup`): call it using the same bearer token, following the request shape in `auth.md`. On success, retry the original request **once**. If the signup call fails or the retried request still returns `ACCOUNT_REQUIRED`, stop and report the error to the user — do not retry in a loop.
+- **Partner requires human connection or registration** (names a connect/signup URL, or publishes no agent signup endpoint): tell the user in one message which service was called, that their email is not yet an account there, and the URL from `auth.md`. Then wait for the human.
 
 Match on the code in the response body, not the status. Partners return this as either 401 or 403 depending on their stack, and a 403 here is the same answer as a 401.
 
