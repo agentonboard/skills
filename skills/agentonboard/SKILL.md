@@ -96,6 +96,10 @@ Check what the partner published in `auth.md`:
 
 The AgentOnboard MCP server is not connected or the API key is invalid/revoked. Ask the user to verify their MCP connection and API key on the AgentOnboard dashboard.
 
+## Diagnostics
+
+Call the `whoami` MCP tool (no parameters) to verify your connected account email and key prefix.
+
 ## Security Rules
 
 - The master key never enters your context and never reaches a partner.
