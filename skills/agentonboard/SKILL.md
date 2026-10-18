@@ -6,7 +6,7 @@ license: MIT
 
 # AgentOnboard
 
-AgentOnboard is identity for AI agents. The AgentOnboard Remote MCP server (or `aon` CLI) exchanges the user's API key for a **5-minute token scoped to one domain**. The partner's server verifies that token locally against public keys — AgentOnboard is not in the request path.
+AgentOnboard is identity for AI agents. The AgentOnboard Remote MCP server exchanges the user's API key for a **5-minute token scoped to one domain**. The partner's server verifies that token locally against public keys — AgentOnboard is not in the request path.
 
 You send it like any other Bearer token. Four steps, plus the recovery branches.
 
@@ -55,12 +55,7 @@ The tool returns structured JSON in text content:
 Extract the `token` string.
 
 **The audience is a bare hostname.** `get_token` automatically normalizes input hostnames (e.g. `https://api.notes.com/v1` normalizes to `api.notes.com`).
-
-**Fallback:** If the `get_token` MCP tool is not registered in your agent environment, check if the `aon` CLI is available and run:
-```bash
-TOKEN=$(aon token get <domain>)
-```
-
+ 
 **Done when** you hold a JWT string.
 
 ## 3. Call
@@ -94,7 +89,10 @@ Check what the partner published in `auth.md`:
 
 ### 401 on `get_token` or Missing Tool
 
-The AgentOnboard MCP server is not connected or the API key is invalid/revoked. Ask the user to verify their MCP connection and API key on the AgentOnboard dashboard.
+The AgentOnboard Remote MCP server is not connected or the API key is invalid/revoked.
+1. Consult [Agent MCP Setup](references/mcp-setup.md).
+2. Offer the user self-setup (provide the client-specific command/JSON snippet so their key stays out of conversation context) or assisted setup (user pastes key, you configure it without echoing the key).
+3. Call `whoami` to verify the connection once configured.
 
 ## Diagnostics
 
